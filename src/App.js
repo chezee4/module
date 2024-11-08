@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Header } from "./feature/header";
+import { Footer } from "./feature/footer";
+import PageCity from "./pages/page-city";
+import PageHobby from "./pages/page-hobby";
+const App = () => {
+  const chezee = {
+    name: "Вадим",
+    surname: "Дуфинець",
+    group: "ІСТ 3 курс ",
+    city: "с.Ракошино",
+    hobby: ["спати", "грати", "їсти"],
+  };
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header name={chezee.name} surname={chezee.surname} />
+      <Routes>
+        <Route path="/" element={<PageCity city={chezee.city} />} />
+        <Route path="/pagehobby" element={<PageHobby hobby={chezee.hobby} />} />
+      </Routes>
+      <Footer group={chezee.group} />
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
